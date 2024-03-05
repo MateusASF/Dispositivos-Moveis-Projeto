@@ -38,4 +38,23 @@ router.delete('/categories', deleteCategoryController.handle);
 router.get('/categories', listCategoryController.handle);
 router.put('/categories', updateCategoryController.handle);
 
+
+//////////////////////////////////////////////////////////////////////////////////
+
+// Routes for Product
+import { CreateProductController } from '../controller/Product/createProductController';
+import { DeleteProductController } from '../controller/Product/deleteProductController';
+import { ListProductController } from '../controller/Product/listProductController';
+import { UpdateProductController } from '../controller/Product/updateProductController';
+
+const createProductController = new CreateProductController();
+const deleteProductController = new DeleteProductController();
+const listProductController = new ListProductController();
+const updateProductController = new UpdateProductController();
+
+router.post('/products', createProductController.handle);
+router.delete('/products', deleteProductController.handle);
+router.get('/products', listProductController.handle);
+router.put('/products', updateProductController.handle);
+
 export { router };

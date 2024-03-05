@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 // import fs from "fs";
 
-class CreateUserController {
+class CreateProductController {
     async handle(request: Request, response: Response) {
         const { name, email, admin, password } = request.body;
         console.log("Nome: " + name);
@@ -15,12 +15,8 @@ class CreateUserController {
             password
         };
 
-        // const userJson = JSON.stringify(user);
-        // fs.writeFileSync("../../UsersDao/users.json", userJson);
-
-
         return response.json(user);
     };
 }
 
-export { CreateUserController };
+export { CreateProductController };

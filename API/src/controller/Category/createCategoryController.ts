@@ -2,12 +2,12 @@ import { Request, Response } from "express";
 
 class CreateCategoryController {
     async handle(request: Request, response: Response) {
-        const { name, description } = request.body;
+        const { name, id } = request.body;
         console.log("Nome: " + name);
-        console.log("Descrição: " + description);
+        console.log("Id: " + id);
         const category = {
             name,
-            description
+            id
         };
         return response.json(category);
     };
