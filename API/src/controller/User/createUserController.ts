@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 // import fs from "fs";
 
-class CreateProductController {
+class CreateUserController {
     async handle(request: Request, response: Response) {
         const { name, email, admin, password } = request.body;
         console.log("Nome: " + name);
@@ -19,4 +19,4 @@ class CreateProductController {
     };
 }
 
-export { CreateProductController };
+export { CreateUserController };
