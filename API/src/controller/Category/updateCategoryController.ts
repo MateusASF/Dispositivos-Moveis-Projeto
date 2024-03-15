@@ -1,4 +1,5 @@
-import e, { Request, Response } from "express";
+import { Request, Response } from "express";
+import { UpdateCategoryService } from "../../service/Category/UpdateCategoryService";
 
 class UpdateCategoryController {
     async handle(request: Request, response: Response) {
@@ -9,6 +10,8 @@ class UpdateCategoryController {
             name,
             id
         };
+        const updateCategoryService = new UpdateCategoryService();
+        await updateCategoryService.execute(category);
         return response.json(category);
     };
 }

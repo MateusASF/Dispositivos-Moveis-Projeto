@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { UpdateProductService } from "../../service/Product/UpdateProductService";
 
 class UpdateProductController {
     async handle(request: Request, response: Response) {
@@ -15,6 +16,8 @@ class UpdateProductController {
             description,
             category
         };
+        const updateProductService = new UpdateProductService();
+        await updateProductService.execute(product);
         return response.json(product);
     };
 }

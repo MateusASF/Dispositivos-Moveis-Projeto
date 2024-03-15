@@ -1,10 +1,12 @@
 import { Request, Response } from "express";
+import { ListUserService } from "../../service/User/ListUserService";
 
 
 class ListUserController {
     async handle(request: Request, response: Response) {
-
-        return response.json({message: 'Listando usuários'});
+        const listUserService = new ListUserService();
+        const users = await listUserService.execute();
+        return response.json(users);
     };
 }
 

@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { CreateCategoryService } from "../../service/Category/CreateCategoryService";
 
 class CreateCategoryController {
     async handle(request: Request, response: Response) {
@@ -9,6 +10,8 @@ class CreateCategoryController {
             name,
             id
         };
+        const createCategoryService = new CreateCategoryService();
+        await createCategoryService.execute(category);
         return response.json(category);
     };
 }
