@@ -1,19 +1,28 @@
 {
-  "name": "API",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "dependencies": {
-    "@types/express": "^4.17.21",
-    "express": "^4.18.2",
-    "nodemon": "^3.1.0",
-    "ts-node-dev": "^2.0.0"
-  },
-  "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon ./src/service/server.ts"
-  },
-  "devDependencies": {
-    "typescript": "^5.3.3"
-  }
+   "name": "API",
+   "version": "1.0.0",
+   "main": "index.js",
+   "license": "MIT",
+   "dependencies": {
+      "@types/express": "^4.17.21",
+      "bcryptjs": "^2.4.3",
+      "class-transformer": "^0.5.1",
+      "express": "^4.18.2",
+      "jsonwebtoken": "^9.0.2",
+      "nodemon": "^3.1.0",
+      "pg": "^8.11.3",
+      "reflect-metadata": "^0.1.10",
+      "ts-node-dev": "^2.0.0",
+      "typeorm": "0.2.28",
+      "mysql": "^2.14.1"
+   },
+   "scripts": {
+      "start": "ts-node src/index.ts",
+      "dev": "nodemon ./src/service/server.ts"
+   },
+   "devDependencies": {
+      "typescript": "3.3.3333",
+      "ts-node": "3.3.0",
+      "@types/node": "^8.0.29"
+   }
 }
