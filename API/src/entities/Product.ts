@@ -7,9 +7,11 @@ import {
     Double,
     ManyToOne,
     JoinColumn,
+    OneToOne,
 } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Category } from "./Category";
+import { Order } from "./Order";
 @Entity("products")
 class Product {
     @PrimaryColumn()
@@ -27,6 +29,9 @@ class Product {
     @ManyToOne(() => Category)
     @JoinColumn({ name: 'category_id' })
     category!: Category;
+
+    @OneToOne(() => Order, order => order.productId)
+    order!: Order;
 
     @CreateDateColumn()
     created_at!: Date;

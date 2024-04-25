@@ -1,19 +1,19 @@
 import { getCustomRepository } from "typeorm";
-import { CategoriesRepositories } from "../../repositories/CategoriesRepositories";
+import { OrderRepositories } from "../../repositories/OrderRepositories";
 interface IOrderDelete {
     id: string;
 }
 class DeleteOrderService {
   async execute({id}:IOrderDelete) {
-      const categoriesRepositories = getCustomRepository(CategoriesRepositories);
-      const categoryAlreadyExists = await categoriesRepositories.findOne({
+      const ordersRepositories = getCustomRepository(OrderRepositories);
+      const orderAlreadyExists = await ordersRepositories.findOne({
         id,
       });
 
-      if (!categoryAlreadyExists) {
+      if (!orderAlreadyExists) {
           throw new Error("Order not exists");
       }
-      return await categoriesRepositories.delete(id);           
+      return await ordersRepositories.delete(id);           
   }
 }
 export { DeleteOrderService };

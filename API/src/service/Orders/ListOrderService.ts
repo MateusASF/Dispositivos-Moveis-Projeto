@@ -1,14 +1,17 @@
 import { getCustomRepository } from "typeorm";
-import { CategoriesRepositories } from "../../repositories/CategoriesRepositories";
+import { OrderRepositories } from "../../repositories/OrderRepositories";
 
 class ListOrderService {
   async execute() {
-    const categoriesRepositories = getCustomRepository(CategoriesRepositories);
+    const ordersRepositories = getCustomRepository(OrderRepositories);
 
-    const categories = await categoriesRepositories.find();
+    const orders = await ordersRepositories.find({
+      relations: ["userId", "productId"],
+    });
 
-    return categories;
+    return orders;
   }
 }
 
 export { ListOrderService };
+

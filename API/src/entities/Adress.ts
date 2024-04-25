@@ -10,7 +10,7 @@ import {
 import { v4 as uuid } from "uuid";
 import { User } from "./User";
 
-@Entity("adresses")
+@Entity("adress")
 class Adress {
     @PrimaryColumn()
     readonly id!: string;
@@ -25,7 +25,6 @@ class Adress {
     estado!: string;
 
     @OneToOne(() => User, user => user.adress)
-    @JoinColumn({ name: 'user_id' })
     user!: User; 
 
     @CreateDateColumn()

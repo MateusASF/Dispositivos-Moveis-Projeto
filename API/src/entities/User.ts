@@ -3,6 +3,9 @@ import {
     Column,
     CreateDateColumn,
     Entity,
+    JoinColumn,
+    ManyToMany,
+    ManyToOne,
     OneToOne,
     PrimaryColumn,
     UpdateDateColumn,
@@ -30,7 +33,8 @@ class User {
     @Column()
     password!: string;
 
-    @OneToOne(() => Adress, adress => adress.user)
+    @ManyToOne(() => Adress)
+    @JoinColumn({ name: 'adress_id' })
     adress!: Adress;
 
     @OneToOne(() => Order, order => order.userId)

@@ -1,22 +1,18 @@
 import { getCustomRepository } from "typeorm";
-import { CategoriesRepositories } from "../../repositories/CategoriesRepositories";
+import { Product } from "../../entities/Product";
+import { User } from "../../entities/User";
+import { OrderRepositories } from "../../repositories/OrderRepositories";
 
 interface IOrderRequest {
-    name: string;
+  userId: User, productId: Product, quantity: number, total: number, discount: number;
 }
 
 class CreateOrderService {
-    async execute({ name }: IOrderRequest) {
-        const categoriesRepository = getCustomRepository(CategoriesRepositories);
-        const categoryAlreadyExists = await categoriesRepository.findOne({
-            name,
-        });
-        if (categoryAlreadyExists) {
-          throw new Error("User already exists");
-        }
-        const category = categoriesRepository.create({ name });
-        await categoriesRepository.save(category);
-        return category;
+    async execute({ userId, productId, quantity, total, discount }: IOrderRequest) {
+        const ordersRepository = getCustomRepository(OrderRepositories);
+        const order = ordersRepository.create({ userId, productId, quantity, total, discount });
+        await ordersRepository.save(order);
+        return order;
       }
 }
 
