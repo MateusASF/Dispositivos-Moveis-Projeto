@@ -13,7 +13,7 @@ class DeleteUserService {
       if (!userAlreadyExists) {
           throw new Error("User not exists");
       }
-      return await usersRepository.delete(id);           
+      return (await usersRepository.delete(id)).affected;           
   }
 }
 export { DeleteUserService };

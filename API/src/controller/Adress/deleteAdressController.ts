@@ -7,7 +7,7 @@ class DeleteAdressController {
         console.log("ID: " + id);
         const deleteAdressService = new DeleteAdressService();
         await deleteAdressService.execute({id});
-        return response.json({message: 'Deletando categoria'});
+        return response.json({message: 'Deletando adress'});
     };
 }
 

@@ -15,7 +15,7 @@ interface IOrderRequest {
         id,
       });
       if (!orderAlreadyExists) {
-          throw new Error("User not exists")
+          throw new Error("Order not exists")
       }
       orderAlreadyExists.userId = userId;
       orderAlreadyExists.productId = productId;

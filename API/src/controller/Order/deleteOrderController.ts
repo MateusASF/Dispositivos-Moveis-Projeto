@@ -7,7 +7,7 @@ class DeleteOrderController {
         console.log("ID: " + id);
         const deleteOrderService = new DeleteOrderService();
         await deleteOrderService.execute({id});
-        return response.json({message: 'Deletando categoria'});
+        return response.json({message: 'Deletando order'});
     };
 }
 

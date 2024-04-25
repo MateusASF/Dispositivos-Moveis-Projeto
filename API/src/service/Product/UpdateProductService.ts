@@ -17,7 +17,7 @@ interface IProductRequest {
         id
       });
       if (!productAlreadyExists) {
-          throw new Error("User not exists")
+          throw new Error("Product not exists")
       }
       productAlreadyExists.name = name;
       productAlreadyExists.price = price;

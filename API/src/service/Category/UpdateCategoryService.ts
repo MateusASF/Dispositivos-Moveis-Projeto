@@ -13,7 +13,7 @@ interface ICategoryRequest {
         id,
       });
       if (!categoryAlreadyExists) {
-          throw new Error("User not exists")
+          throw new Error("Category not exists")
       }
       categoryAlreadyExists.name=name
       categoryAlreadyExists.updated_at=new Date()

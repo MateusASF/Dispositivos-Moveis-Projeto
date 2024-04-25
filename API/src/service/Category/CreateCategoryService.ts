@@ -12,7 +12,7 @@ class CreateCategoryService {
             name,
         });
         if (categoryAlreadyExists) {
-          throw new Error("User already exists");
+          throw new Error("Category already exists");
         }
         const category = categoriesRepository.create({ name });
         await categoriesRepository.save(category);
