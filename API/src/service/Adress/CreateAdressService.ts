@@ -1,15 +1,14 @@
 import { getCustomRepository } from "typeorm";
 import { AdressRepositories } from "../../repositories/AdressRepositories";
-import { User } from "../../entities/User";
 
 interface IAdressRequest {
-    bairro: string; cidade: string; estado: string; user: User;
+    bairro: string; cidade: string; estado: string;
 }
 
 class CreateAdressService {
-    async execute({ bairro, cidade, estado, user }: IAdressRequest) {
+    async execute({ bairro, cidade, estado }: IAdressRequest) {
         const adressesRepository = getCustomRepository(AdressRepositories);
-        const adress = adressesRepository.create({ bairro, cidade, estado, user });
+        const adress = adressesRepository.create({ bairro, cidade, estado });
         await adressesRepository.save(adress);
         return adress;
       }

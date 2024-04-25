@@ -1,6 +1,9 @@
 import { Router } from 'express';
 const router = Router();
 
+//Routes for authenticate
+
+
 
 // Routes for User
 import { CreateUserController } from './controller/User/createUserController';
@@ -13,11 +16,7 @@ const deleteUserController = new DeleteUserController();
 const listUserController = new ListUserController();
 const updateUserController = new UpdateUserController();
 
-router.get('/teste', (req, res) => {console.log('teste'); res.send('teste')});
 
-// router.post('/auth', )
-
-// router.use(ensureAuthenticated);
 
 router.post('/users', createUserController.handle);
 router.delete('/users', deleteUserController.handle);
@@ -92,5 +91,13 @@ router.post('/order', createOrderController.handle);
 router.delete('/order', deleteOrderController.handle);
 router.get('/order', listOrderController.handle);
 router.put('/order', updateOrderController.handle);
+
+import { ensureAuthenticated } from './midleware/ensureAuthenticated';
+import { AuthenticateUserController } from './controller/Autenticated/AuthenticateUserController';
+const authenticateUserController = new AuthenticateUserController();
+router.post('/auth', authenticateUserController.handle)
+router.use(ensureAuthenticated);
+router.get('/teste', (req, res) => {console.log('teste'); res.send('teste')});
+
 
 export { router };

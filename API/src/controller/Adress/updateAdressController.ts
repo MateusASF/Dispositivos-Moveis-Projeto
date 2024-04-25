@@ -3,12 +3,12 @@ import { UpdateAdressService } from "../../service/Adress/UpdateAdressService";
 
 class UpdateAdressController {
     async handle(request: Request, response: Response) {
-        const { name, id } = request.body;
-        console.log("Nome: " + name);
-        console.log("Id: " + id);
+        const { id, bairro, cidade, estado } = request.body;
         const adress = {
-            name,
-            id
+            id,
+            bairro,
+            cidade,
+            estado
         };
         const updateAdressService = new UpdateAdressService();
         await updateAdressService.execute(adress);

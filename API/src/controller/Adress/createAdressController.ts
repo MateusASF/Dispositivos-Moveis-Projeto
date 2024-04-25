@@ -3,10 +3,10 @@ import { CreateAdressService } from "../../service/Adress/CreateAdressService";
 
 class CreateAdressController {
     async handle(request: Request, response: Response) {
-        const { bairro, cidade, estado, user} = request.body;
+        const { bairro, cidade, estado} = request.body;
         const createAdressService = new CreateAdressService();
         const adress =  await createAdressService.execute({
-            bairro, cidade, estado, user
+            bairro, cidade, estado
         });
         return response.json(adress);
 

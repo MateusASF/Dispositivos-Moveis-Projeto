@@ -1,27 +1,31 @@
 import { compare } from "bcryptjs";
-import { hash } from "bcryptjs";
 import { sign } from "jsonwebtoken";
+import { getCustomRepository } from "typeorm";
+import { UsersRepositories } from "../../repositories/UsersRepositories";
+
 interface IAuthenticateRequest {
     email: string;
     password: string;
 }
 class AuthenticateUserService {
-    async execute({ email, password }: IAuthenticateRequest) {
-        if (email != "prog@fatec.sp.gov.br") {
+    async execute({ email, password }: IAuthenticateRequest) {  
+        const usersRepositories = getCustomRepository(UsersRepositories);
+        const user = await usersRepositories.findOne({        email,    });
+        if(!user){
             throw new Error("Email incorreto");
         }
-        const passwordHash = await hash("fatec", 8);
-        // 123456 / 783645734-sdhfhsdf7762374234234
-        const passwordMatch = await compare(password, passwordHash);
+
+        const passwordMatch = await compare(password, user?.password);
         if (!passwordMatch) {
-            throw new Error("Password incorrect");
+          throw new Error("Password incorrect");
         }
-        // Gerar token
-        const token = sign({ email: "prog@fatec.sp.gov.br" }, "123456", {
-            subject: "Admin",
-            expiresIn: "1d",
-        });
+
+        const token = sign(
+          {         email:user.email,  },
+          "123456",
+          { subject: (user.admin?"Admin":"others"), expiresIn: "1d", }
+        );    
         return token;
-    }
+      }
 }
 export { AuthenticateUserService };

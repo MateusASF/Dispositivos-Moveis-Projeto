@@ -4,8 +4,6 @@ import { UpdateCategoryService } from "../../service/Category/UpdateCategoryServ
 class UpdateCategoryController {
     async handle(request: Request, response: Response) {
         const { name, id } = request.body;
-        console.log("Nome: " + name);
-        console.log("Id: " + id);
         const category = {
             name,
             id
