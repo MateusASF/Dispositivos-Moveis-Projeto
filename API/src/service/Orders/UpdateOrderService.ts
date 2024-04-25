@@ -1,13 +1,13 @@
 import { getCustomRepository } from "typeorm";
 import { CategoriesRepositories } from "../../repositories/CategoriesRepositories";
 
-interface ICategoryRequest {
+interface IOrderRequest {
     id:string;
     name: string;
   }
-  class UpdateCategoryService {
+  class UpdateOrderService {
 
-    async execute({ id, name }: ICategoryRequest) {
+    async execute({ id, name }: IOrderRequest) {
       const categoriesRepository = getCustomRepository(CategoriesRepositories);
       const categoryAlreadyExists = await categoriesRepository.findOne({
         id,
@@ -21,5 +21,5 @@ interface ICategoryRequest {
     }
 
   }
-  export { UpdateCategoryService };
+  export { UpdateOrderService };
   

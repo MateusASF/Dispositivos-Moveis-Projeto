@@ -1,12 +1,12 @@
-import { CategoriesRepositories } from "../../repositories/CategoriesRepositories";
 import { getCustomRepository } from "typeorm";
+import { CategoriesRepositories } from "../../repositories/CategoriesRepositories";
 
-interface ICategoryRequest {
+interface IOrderRequest {
     name: string;
 }
 
-class CreateCategoryService {
-    async execute({ name }: ICategoryRequest) {
+class CreateOrderService {
+    async execute({ name }: IOrderRequest) {
         const categoriesRepository = getCustomRepository(CategoriesRepositories);
         const categoryAlreadyExists = await categoriesRepository.findOne({
             name,
@@ -20,4 +20,4 @@ class CreateCategoryService {
       }
 }
 
-export { CreateCategoryService };
+export { CreateOrderService };

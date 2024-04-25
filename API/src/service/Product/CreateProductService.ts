@@ -1,24 +1,25 @@
+import { Category } from "../../entities/Category";
+import { ProductsRepositories } from "../../repositories/ProductsRepositories";
+import { getCustomRepository } from "typeorm";
 interface CreateProductDTO {
-    id: number;
     name: string;
     price: number;
     description: string;
-    category: string;
+    category: Category;
 }
 
 class CreateProductService {
-    public async execute({id, name, price, description, category}: CreateProductDTO) {
-        if (!category){
-            throw new Error ("Categoria ta faltando");
+    async execute({ name, price, description, category}: CreateProductDTO) {
+        const productsRepository = getCustomRepository(ProductsRepositories);
+        const productAlreadyExists = await productsRepository.findOne({
+            name
+        });
+        if (productAlreadyExists) {
+          throw new Error("Product already exists");
         }
-        var vproduct = {
-            name: name,
-            price: price,
-            description: description,
-            category: category,
-            id: id
-        };
-        return vproduct
+        const product = productsRepository.create({ name, price, description, category});
+        await productsRepository.save(product);
+        return product;
     }
 }
 

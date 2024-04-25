@@ -15,6 +15,10 @@ const updateUserController = new UpdateUserController();
 
 router.get('/teste', (req, res) => {console.log('teste'); res.send('teste')});
 
+// router.post('/auth', )
+
+// router.use(ensureAuthenticated);
+
 router.post('/users', createUserController.handle);
 router.delete('/users', deleteUserController.handle);
 router.get('/users', listUserController.handle);
@@ -46,6 +50,7 @@ import { CreateProductController } from './controller/Product/createProductContr
 import { DeleteProductController } from './controller/Product/deleteProductController';
 import { ListProductController } from './controller/Product/listProductController';
 import { UpdateProductController } from './controller/Product/updateProductController';
+import { ensureAuthenticated } from './midleware/ensureAuthenticated';
 
 const createProductController = new CreateProductController();
 const deleteProductController = new DeleteProductController();
